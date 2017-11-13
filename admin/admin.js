@@ -36,9 +36,13 @@
         section_index.forEach( show_found_branches.bind( this, search_for ) );
     });
 
+    function format_branch_for_autocomplete( branch ) {
+        return '#' + branch.pr.toString() + ' - ' + branch.header;
+    }
+
     function show_found_branches(search_for, branch) {
         var element = branch.element;
-        var header_text = ( parseInt(search_for) > 0 ) ? branch.pr.toString() : branch.header;
+        var header_text = ( parseInt(search_for) > 0 ) ? format_branch_for_autocomplete( branch ) : branch.header;
 
         var found_position = header_text.indexOf(search_for);
         if (-1 === found_position) {
